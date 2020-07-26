@@ -20,8 +20,8 @@ class CreateBookingsTable extends Migration
             $table->string('event_type')->nullable();
             $table->string('no_of_persons')->nullable();
             $table->string('booking_time')->nullable();
-            $table->string('book_time_from')->nullable();
-            $table->string('book_time_to')->nullable();
+            $table->dateTime('book_time_from')->nullable();
+            $table->dateTime('book_time_to')->nullable();
             $table->text('menu')->nullable();
             $table->string('price')->nullable();
             $table->timestamps();

@@ -41,6 +41,13 @@ Route::group([
     Route::get('user/bookings', 'User\ApiUserController@getUserProfileData');
 
     Route::post('search-halls', 'Hall\ApiHallController@searchHalls');
+
+
+    // Get Halls
+    Route::get('hall-manager/halls', 'Hall\ApiHallController@getAllHalls');
+    Route::get('hall-manager/halls/{id}', 'Hall\ApiHallController@getHallData');
+    Route::post('hall-manager/halls/{id}', 'Hall\ApiHallController@updateHallData');
+    Route::delete('hall-manager/halls/{id}', 'Hall\ApiHallController@deleteHallData');
 });
 
 Route::group([
@@ -48,14 +55,26 @@ Route::group([
     'namespace' => 'Api'
 ], function () {
     // Get Customers
-    Route::get('admin/get-customers', 'Admin\ApiAdminController@getCustomers');
+    Route::get('admin/customers', 'Admin\ApiAdminController@getCustomers');
+    Route::get('admin/customers/{id}', 'Admin\ApiAdminController@getCustomerData');
+    Route::post('admin/customers/{id}', 'Admin\ApiAdminController@updateCustomerData');
+    Route::delete('admin/customers/{id}', 'Admin\ApiAdminController@deleteCustomerData');
 
     // Get hall_managers
-    Route::get('admin/get-hall_managers', 'Admin\ApiAdminController@getHallManagers');
+    Route::get('admin/hall_managers', 'Admin\ApiAdminController@getHallManagers');
+    Route::get('admin/hall_managers/{id}', 'Admin\ApiAdminController@getHallManagerData');
+    Route::post('admin/hall_managers/{id}', 'Admin\ApiAdminController@updateHallManagerData');
+    Route::delete('admin/hall_managers/{id}', 'Admin\ApiAdminController@deteleHallManagerData');
 
     // Get Halls
-    Route::get('admin/get-halls', 'Admin\ApiAdminController@getAllHalls');
+    Route::get('admin/halls', 'Admin\ApiAdminController@getAllHalls');
+    Route::get('admin/halls/{id}', 'Admin\ApiAdminController@getHallData');
+    Route::post('admin/halls/{id}', 'Admin\ApiAdminController@updateHallData');
+    Route::delete('admin/halls/{id}', 'Admin\ApiAdminController@deleteHallData');
 
     // Get Bookings
-    Route::get('admin/get-bookings', 'Admin\ApiAdminController@getBookings');
+    Route::get('admin/bookings', 'Admin\ApiAdminController@getBookings');
+    Route::get('admin/bookings/{id}', 'Admin\ApiAdminController@getBookingData');
+    Route::post('admin/bookings/{id}', 'Admin\ApiAdminController@updateBookingData');
+    Route::delete('admin/bookings/{id}', 'Admin\ApiAdminController@deleteBookingData');
 });

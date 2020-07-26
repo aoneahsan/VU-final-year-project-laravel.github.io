@@ -24,8 +24,9 @@ class CreateHallsTable extends Migration
             $table->string("location")->nullable();
             $table->string("min_no_of_persons")->nullable();
             $table->string("is_available")->nullable();
-            $table->string("available_from")->nullable();
-            $table->string("available_to")->nullable();
+            $table->string('is_approved')->nullable();
+            $table->dateTime("available_from")->nullable();
+            $table->dateTime("available_to")->nullable();
             $table->timestamps();
         });
     }
