@@ -68,8 +68,7 @@ class ApiHallController extends Controller
             'min_no_of_persons' => $request->has('min_no_of_persons') ? $request->min_no_of_persons : null,
             'is_available' => $request->has('is_available') ? $request->is_available : null,
             'available_from' => $request->has('available_from') ? $request->available_from : null,
-            'available_to' => $request->has('available_to') ? $request->available_to : null,
-            'phone_number' => $request->has('phone_number') ? $request->phone_number : null
+            'available_to' => $request->has('available_to') ? $request->available_to : null
         ]);
         return response()->json(['data' => new HallResource($newdata)], 200);
     }

@@ -41,7 +41,7 @@ class ApiAdminController extends Controller
         } else {
             return response()->json(['message' => "No User Found to update."], 500);
         }
-        
+
     }
 
     public function deleteCustomerData(Request $request, $id)
@@ -82,7 +82,7 @@ class ApiAdminController extends Controller
         } else {
             return response()->json(['message' => "No User Found to update."], 500);
         }
-        
+
     }
 
     public function deleteHallManagerData(Request $request, $id)
@@ -130,7 +130,7 @@ class ApiAdminController extends Controller
         } else {
             return response()->json(['message' => "No Hall Found to update."], 500);
         }
-        
+
     }
 
     public function deleteHallData(Request $request, $id)
@@ -146,7 +146,7 @@ class ApiAdminController extends Controller
     // Bookings Functions
     public function getBookings(Request $request)
     {
-        $items = Booking::all();
+        $items = Booking::with('user', 'hall')->get();
         return response()->json(['data' => BookingResource::collection($items)], 200);
     }
 
@@ -175,7 +175,7 @@ class ApiAdminController extends Controller
         } else {
             return response()->json(['message' => "No Booking Found to update."], 500);
         }
-        
+
     }
 
     public function deleteBookingData(Request $request, $id)

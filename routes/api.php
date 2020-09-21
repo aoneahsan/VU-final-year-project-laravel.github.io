@@ -36,7 +36,7 @@ Route::group([
     Route::get('user/profile', 'User\ApiUserController@getUserProfileData');
     Route::post('user/profile/update', 'User\ApiUserController@updateUserProfile');
     Route::post('user/profile-img/update', 'User\ApiUserController@updateUserProfileImage');
-    Route::delete('user', 'User\ApiUserController@deleteUserAccount');
+    Route::delete('user/profile', 'User\ApiUserController@deleteUserAccount');
 
     Route::get('user/bookings', 'User\ApiUserController@getUserProfileData');
 
@@ -46,6 +46,7 @@ Route::group([
     // Get Halls
     Route::get('hall-manager/halls', 'Hall\ApiHallController@getAllHalls');
     Route::get('hall-manager/halls/{id}', 'Hall\ApiHallController@getHallData');
+    Route::post('hall-manager/halls', 'Hall\ApiHallController@createHall');
     Route::post('hall-manager/halls/{id}', 'Hall\ApiHallController@updateHallData');
     Route::delete('hall-manager/halls/{id}', 'Hall\ApiHallController@deleteHallData');
 });
