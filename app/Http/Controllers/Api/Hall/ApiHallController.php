@@ -24,20 +24,26 @@ class ApiHallController extends Controller
             if (!!$request->minprice) {
                 $items->where('hall_rent', '>=', +$request->minprice);
             }
+            else {
+                $items->where('hall_rent', '>=', +1);
+            }
         }
         if ($request->has('maxprice')) {
             if (!!$request->maxprice) {
                 $items->where('hall_rent', '<=', +$request->maxprice);
             }
+            else {
+                $items->where('hall_rent', '<=', +1000000000000000);
+            }
         }
         if ($request->has('location')) {
             if (!!$request->location) {
-                $items->where('location', $request->location);
+                $items->where('location', 'Like', "%" . $request->location . "%");
             }
         }
         if ($request->has('event_type')) {
             if (!!$request->event_type) {
-                $items->where('event_type', $request->event_type);
+                $items->where('event_type', 'Like', "%" . $request->event_type . "%");
             }
         }
         if ($request->has('min_no_of_persons')) {
@@ -66,9 +72,7 @@ class ApiHallController extends Controller
             'hall_rent' => $request->has('hall_rent') ? $request->hall_rent : null,
             'location' => $request->has('location') ? $request->location : null,
             'min_no_of_persons' => $request->has('min_no_of_persons') ? $request->min_no_of_persons : null,
-            'is_available' => $request->has('is_available') ? $request->is_available : null,
-            'available_from' => $request->has('available_from') ? $request->available_from : null,
-            'available_to' => $request->has('available_to') ? $request->available_to : null
+            'is_available' => $request->has('is_available') ? $request->is_available : null
         ]);
         return response()->json(['data' => new HallResource($newdata)], 200);
     }
@@ -92,8 +96,6 @@ class ApiHallController extends Controller
                 'location' => $request->has('location') ? $request->location : $itemdata->location,
                 'min_no_of_persons' => $request->has('min_no_of_persons') ? $request->min_no_of_persons : $itemdata->min_no_of_persons,
                 'is_available' => $request->has('is_available') ? $request->is_available : $itemdata->is_available,
-                'available_from' => $request->has('available_from') ? $request->available_from : $itemdata->available_from,
-                'available_to' => $request->has('available_to') ? $request->available_to : $itemdata->available_to,
                 'phone_number' => $request->has('phone_number') ? $request->phone_number : $itemdata->phone_number
             ]);
             return response()->json(['data' => new HallResource($newdata)], 200);
