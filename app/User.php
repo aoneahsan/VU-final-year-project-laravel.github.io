@@ -46,8 +46,8 @@ class User extends Authenticatable
 
     public function getProfileImg()
     {
-        if (!!$this->profile_img) {
-            return Storage::url($this->profile_img);
+        if (!!$this->profile_image) {
+            return Storage::url($this->profile_image);
         } else {
             return 'assets/img/placeholder.jpg';
         }

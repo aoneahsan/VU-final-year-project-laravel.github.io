@@ -36,7 +36,7 @@ class DatabaseSeeder extends Seeder
             $customer1->cnic = '0000000000000';
             $customer1->role = 'customer';
             $customer1->save();
-            
+
             $customer2 = new User();
             $customer2->name = "customer2";
             $customer2->email = "customer2@demo.com";
@@ -46,7 +46,7 @@ class DatabaseSeeder extends Seeder
             $customer2->cnic = '0000000000000';
             $customer2->role = 'customer';
             $customer2->save();
-    
+
             $customer3 = new User();
             $customer3->name = "customer3";
             $customer3->email = "customer3@demo.com";
@@ -56,7 +56,7 @@ class DatabaseSeeder extends Seeder
             $customer3->cnic = '0000000000000';
             $customer3->role = 'customer';
             $customer3->save();
-    
+
             $customer4 = new User();
             $customer4->name = "customer4";
             $customer4->email = "customer4@demo.com";
@@ -66,7 +66,7 @@ class DatabaseSeeder extends Seeder
             $customer4->cnic = '0000000000000';
             $customer4->role = 'customer';
             $customer4->save();
-    
+
             $customer5 = new User();
             $customer5->name = "customer5";
             $customer5->email = "customer5@demo.com";
@@ -76,7 +76,7 @@ class DatabaseSeeder extends Seeder
             $customer5->cnic = '0000000000000';
             $customer5->role = 'customer';
             $customer5->save();
-    
+
             $hall_manager1 = new User();
             $hall_manager1->name = "hall_manager1";
             $hall_manager1->email = "hall_manager1@demo.com";
@@ -85,8 +85,9 @@ class DatabaseSeeder extends Seeder
             $hall_manager1->phone_number = '00000000000';
             $hall_manager1->cnic = '0000000000000';
             $hall_manager1->role = 'hall_manager';
+            $hall_manager1->is_approved = true;
             $hall_manager1->save();
-    
+
             $hall_manager2 = new User();
             $hall_manager2->name = "hall_manager2";
             $hall_manager2->email = "hall_manager2@demo.com";
@@ -96,7 +97,7 @@ class DatabaseSeeder extends Seeder
             $hall_manager2->cnic = '0000000000000';
             $hall_manager2->role = 'hall_manager';
             $hall_manager2->save();
-    
+
             $hall_manager3 = new User();
             $hall_manager3->name = "hall_manager3";
             $hall_manager3->email = "hall_manager3@demo.com";
@@ -106,7 +107,7 @@ class DatabaseSeeder extends Seeder
             $hall_manager3->cnic = '0000000000000';
             $hall_manager3->role = 'hall_manager';
             $hall_manager3->save();
-    
+
             $hall_manager4 = new User();
             $hall_manager4->name = "hall_manager4";
             $hall_manager4->email = "hall_manager4@demo.com";
@@ -118,14 +119,16 @@ class DatabaseSeeder extends Seeder
             $hall_manager4->save();
 
             $hall1 = new Hall();
-            $hall1->user_id = User::all()->random()->id;
+            $hall1->user_id = 7;
             $hall1->name = "hall1";
             $hall1->description = "hall1 best hall.";
-            $hall1->hall_size = "100 persons";
+            $hall1->hall_size = 100;
             $hall1->event_type = 'mariage';
             $hall1->hall_rent = 130;
             $hall1->location = 'lahore';
             $hall1->min_no_of_persons = 4;
+            $hall1->open_time = '23:11';
+            $hall1->closed_time = '17:10';
             $hall1->is_available = true;
             $hall1->save();
 
@@ -133,11 +136,13 @@ class DatabaseSeeder extends Seeder
             $hall1->user_id = User::all()->random()->id;
             $hall1->name = "hall2";
             $hall1->description = "hall2 best hall.";
-            $hall1->hall_size = "90 persons";
+            $hall1->hall_size = 100;
             $hall1->event_type = 'mariage';
             $hall1->hall_rent = 130;
             $hall1->location = 'lahore';
             $hall1->min_no_of_persons = 4;
+            $hall1->open_time = '23:11';
+            $hall1->closed_time = '17:10';
             $hall1->is_available = true;
             $hall1->save();
 
@@ -145,11 +150,13 @@ class DatabaseSeeder extends Seeder
             $hall1->user_id = User::all()->random()->id;
             $hall1->name = "hall3";
             $hall1->description = "hall3 best hall.";
-            $hall1->hall_size = "10 persons";
+            $hall1->hall_size = 100;
             $hall1->event_type = 'mariage';
             $hall1->hall_rent = 90;
             $hall1->location = 'pakistan';
             $hall1->min_no_of_persons = 4;
+            $hall1->open_time = '23:11';
+            $hall1->closed_time = '17:10';
             $hall1->is_available = false;
             $hall1->save();
 
@@ -157,11 +164,13 @@ class DatabaseSeeder extends Seeder
             $hall1->user_id = User::all()->random()->id;
             $hall1->name = "hall4";
             $hall1->description = "hall4 best hall.";
-            $hall1->hall_size = "20 persons";
+            $hall1->hall_size = 100;
             $hall1->event_type = 'mariage';
             $hall1->hall_rent = 60;
             $hall1->location = 'karachi';
             $hall1->min_no_of_persons = 4;
+            $hall1->open_time = '23:11';
+            $hall1->closed_time = '17:10';
             $hall1->is_available = true;
             $hall1->save();
 
@@ -169,11 +178,13 @@ class DatabaseSeeder extends Seeder
             $hall1->user_id = User::all()->random()->id;
             $hall1->name = "hall4";
             $hall1->description = "hall4 best hall.";
-            $hall1->hall_size = "20 persons";
+            $hall1->hall_size = 100;
             $hall1->event_type = 'mariage';
             $hall1->hall_rent = 60;
             $hall1->location = 'karachi';
             $hall1->min_no_of_persons = 4;
+            $hall1->open_time = '23:11';
+            $hall1->closed_time = '17:10';
             $hall1->is_available = true;
             $hall1->save();
 

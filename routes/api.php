@@ -20,6 +20,8 @@ Route::get("okok", function () {
 
 Route::post('login', 'Api\Auth\ApiAuthController@loginApi');
 Route::post('register', 'Api\Auth\ApiAuthController@registerApi');
+// Upload Image
+Route::post('upload-file', 'Api\ApiSystemController@uploadFile');
 
 Route::group([
     'middleware' => 'auth:sanctum',
@@ -34,14 +36,16 @@ Route::group([
 
     // User Profile APIs
     Route::get('user/profile', 'User\ApiUserController@getUserProfileData');
-    Route::post('user/profile/update', 'User\ApiUserController@updateUserProfile');
-    Route::post('user/profile-img/update', 'User\ApiUserController@updateUserProfileImage');
+    Route::put('user/profile/{userID}', 'User\ApiUserController@updateUserProfile');
+    Route::post('user/profile-img/{userID}/update', 'User\ApiUserController@updateUserProfileImage');
     Route::delete('user/profile', 'User\ApiUserController@deleteUserAccount');
 
+
+    // Bookings APIs
     Route::get('user/bookings', 'User\ApiUserController@getUserProfileData');
 
+    // Search Halls
     Route::post('search-halls', 'Hall\ApiHallController@searchHalls');
-
 
     // Get Halls
     Route::get('hall-manager/halls', 'Hall\ApiHallController@getAllHalls');
@@ -57,15 +61,15 @@ Route::group([
 ], function () {
     // Get Customers
     Route::get('admin/customers', 'Admin\ApiAdminController@getCustomers');
-    Route::get('admin/customers/{id}', 'Admin\ApiAdminController@getCustomerData');
-    Route::post('admin/customers/{id}', 'Admin\ApiAdminController@updateCustomerData');
-    Route::delete('admin/customers/{id}', 'Admin\ApiAdminController@deleteCustomerData');
+    Route::get('admin/customers/{id}', 'Admin\ApiAdminController@getUserData');
+    Route::post('admin/customers/{id}', 'Admin\ApiAdminController@updateUserData');
+    Route::delete('admin/customers/{id}', 'Admin\ApiAdminController@deleteUserData');
 
     // Get hall_managers
     Route::get('admin/hall_managers', 'Admin\ApiAdminController@getHallManagers');
-    Route::get('admin/hall_managers/{id}', 'Admin\ApiAdminController@getHallManagerData');
-    Route::post('admin/hall_managers/{id}', 'Admin\ApiAdminController@updateHallManagerData');
-    Route::delete('admin/hall_managers/{id}', 'Admin\ApiAdminController@deteleHallManagerData');
+    Route::get('admin/hall_managers/{id}', 'Admin\ApiAdminController@getUserData');
+    Route::post('admin/hall_managers/{id}', 'Admin\ApiAdminController@updateUserData');
+    Route::delete('admin/hall_managers/{id}', 'Admin\ApiAdminController@deteleUserData');
 
     // Get Halls
     Route::get('admin/halls', 'Admin\ApiAdminController@getAllHalls');

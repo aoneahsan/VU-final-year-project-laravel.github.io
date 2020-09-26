@@ -23,8 +23,10 @@ class CreateHallsTable extends Migration
             $table->string("hall_rent")->nullable();
             $table->string("location")->nullable();
             $table->string("min_no_of_persons")->nullable();
+            $table->string("open_time")->nullable();
+            $table->string("closed_time")->nullable();
             $table->string("is_available")->default(true)->nullable();
-            $table->string('is_approved')->default(false)->nullable();
+            $table->softDeletes();
             $table->timestamps();
         });
     }

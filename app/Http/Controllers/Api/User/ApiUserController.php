@@ -22,48 +22,43 @@ class ApiUserController extends Controller
         }
     }
 
-    public function updateUserProfile(Request $request)
+    public function updateUserProfile(Request $request, $userID)
     {
-        $user_data = User::where('id', $request->user()->id)->first();
+        $user_data = User::where('id', $userID)->first();
 
-        $result = User::where('id', $request->user()->id)->update([
-            'username' => $request->has('username') ? $request->username : $user_data->username,
-            'email' => $request->has('email') ? $request->email : $user_data->email,
+        User::where('id', $userID)->update([
             'name' => $request->has('name') ? $request->name : $user_data->name,
-            'location' => $request->has('location') ? $request->location : $user_data->location,
             'cnic' => $request->has('cnic') ? $request->cnic : $user_data->cnic,
-            'phone_number' => $request->has('phone_number') ? $request->phone_number : $user_data->phone_number
+            'location' => $request->has('location') ? $request->location : $user_data->location,
+            'phone_number' => $request->has('phone_number') ? $request->phone_number : $user_data->phone_number,
+            'is_approved' => $request->has('is_approved') ? $request->is_approved : $user_data->is_approved
         ]);
 
-        if ($result) {
-            $new_data = User::where('id', $request->user()->id)->first();
-            return response()->json(['data' => new UserProfileResource($new_data)], 200);
-        } else {
-            return response()->json(['message' => "Error Occured!"], 500);
-        }
+        $new_data = User::where('id', $userID)->first();
+        return response()->json(['data' => new UserProfileResource($new_data)], 200);
     }
 
-    public function updateUserProfileImage(Request $request)
+    public function updateUserProfileImage(Request $request, $userID)
     {
-        $user_data = User::where('id', $request->user()->id)->first();
+        $user_data = User::where('id', $userID)->first();
 
-        $oldImageURL = $user_data->profile_img;
+        $oldImageURL = $user_data->profile_image;
 
         $profile_image = null;
         if (request('profile_image')) {
-            $profile_image = request('profile_image')->store('profileimage');
+            $profile_image = $request->file('profile_image')->store('public/uploaded-files');
             Storage::delete($oldImageURL);
         }
 
-        $result = User::where('id', $request->user()->id)->update([
-            'profile_img' => $profile_image ? $profile_image : $user_data->profile_img,
+        $result = User::where('id', $userID)->update([
+            'profile_image' => $profile_image ? $profile_image : $user_data->profile_image,
         ]);
 
         if ($result) {
-            $new_data = User::where('id', $request->user()->id)->first();
+            $new_data = User::where('id', $userID)->first();
             return response()->json(['data' => new UserProfileResource($new_data)], 200);
         } else {
-            return response()->json(['message' => "Error Occured!"], 500);
+            return response()->json(['message' => "user profile image update error!"], 500);
         }
     }
 

@@ -47,7 +47,8 @@ class ApiAuthController extends Controller
             'password' => ['required', 'string', 'min:6'],
             'cnic' => ['required'],
             'phone_number' => ['required'],
-            'role' => ['required'] // 'hall_manager', 'customer'
+            'role' => ['required'], // 'hall_manager', 'customer',
+            'profile_image' => ['required']
         ]);
 
         $UserRole = 'customer';
@@ -62,7 +63,8 @@ class ApiAuthController extends Controller
             'phone_number' => $request->phone_number,
             'cnic' => $request->cnic,
             'location' => $request->location,
-            'role' => $UserRole
+            'role' => $UserRole,
+            'profile_image' => $request->profile_image
         ]);
 
         return response()->json(['data' => new UserLoginResource($user)], 200);

@@ -23,6 +23,8 @@ class HallResource extends JsonResource
             'hall_rent' => $this->hall_rent,
             'location' => $this->location,
             'min_no_of_persons' => $this->min_no_of_persons,
+            'open_time' => $this->open_time,
+            'closed_time' => $this->closed_time,
             'is_available' => !!$this->is_available,
             'created_at' => date('l F j, Y', strtotime($this->created_at))
         ];

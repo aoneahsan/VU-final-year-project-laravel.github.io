@@ -24,6 +24,7 @@ class CreateUsersTable extends Migration
             $table->string('cnic')->nullable();
             $table->string('profile_image')->nullable();
             $table->string('role')->nullable();
+            $table->boolean('is_approved')->default(false)->nullable(); // just for hall managers
             $table->rememberToken();
             $table->softDeletes();
             $table->timestamps();

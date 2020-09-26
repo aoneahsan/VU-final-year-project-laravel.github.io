@@ -21,8 +21,10 @@ class UserProfileResource extends JsonResource
             'phone_number' => $this->phone_number,
             'location' => $this->location,
             'profile_image' => $this->getProfileImg(),
+            'is_approved' => !!$this->is_approved,
             'role' => $this->role,
             'cnic' => $this->cnic,
+            'is_approved' => $this->is_approved,
             'member_since' => date('F j, Y', strtotime($this->created_at))
         ];
     }

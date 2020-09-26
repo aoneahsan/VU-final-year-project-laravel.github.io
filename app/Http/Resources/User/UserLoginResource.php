@@ -20,6 +20,7 @@ class UserLoginResource extends JsonResource
             'email' => $this->email,
             'phone_number' => $this->phone_number,
             'profile_image' => $this->getProfileImg(),
+            'is_approved' => !!$this->is_approved,
             'role' => $this->role,
             'member_since' => "Member Since " . date('l F j, Y', strtotime($this->created_at)),
             'tokken' => $this->getTokken()

@@ -20,40 +20,6 @@ class ApiAdminController extends Controller
         return response()->json(['data' => UserProfileResource::collection($items)], 200);
     }
 
-    public function getCustomerData(Request $request, $id)
-    {
-        $item = User::where('id', $id)->first();
-        return response()->json(['data' => new UserProfileResource($item)], 200);
-    }
-
-    public function updateCustomerData(Request $request, $id)
-    {
-        $user_data = User::where('id', $id)->first();
-        if ($user_data) {
-            $newdata = $user_data->update([
-                'name' => $request->has('name') ? $request->name : $user_data->name,
-                'location' => $request->has('location') ? $request->location : $user_data->location,
-                'cnic' => $request->has('cnic') ? $request->cnic : $user_data->cnic,
-                'role' => $request->has('role') ? $request->role : $user_data->role,
-                'phone_number' => $request->has('phone_number') ? $request->phone_number : $user_data->phone_number
-            ]);
-            return response()->json(['data' => new UserProfileResource($newdata)], 200);
-        } else {
-            return response()->json(['message' => "No User Found to update."], 500);
-        }
-
-    }
-
-    public function deleteCustomerData(Request $request, $id)
-    {
-        $item = User::where('id', $id)->delete();
-        if ($item) {
-            return response()->json(['data' => "User Data Deleted."], 200);
-        } else {
-            return response()->json(['message' => "Error while, deleting User Data."], 500);
-        }
-    }
-
     // HallManagers Functions
     public function getHallManagers(Request $request)
     {
@@ -61,13 +27,13 @@ class ApiAdminController extends Controller
         return response()->json(['data' => UserProfileResource::collection($items)], 200);
     }
 
-    public function getHallManagerData(Request $request, $id)
+    public function getUserData(Request $request, $id)
     {
         $item = User::where('id', $id)->first();
         return response()->json(['data' => new UserProfileResource($item)], 200);
     }
 
-    public function updateHallManagerData(Request $request, $id)
+    public function updateUserData(Request $request, $id)
     {
         $user_data = User::where('id', $id)->first();
         if ($user_data) {
@@ -75,17 +41,16 @@ class ApiAdminController extends Controller
                 'name' => $request->has('name') ? $request->name : $user_data->name,
                 'location' => $request->has('location') ? $request->location : $user_data->location,
                 'cnic' => $request->has('cnic') ? $request->cnic : $user_data->cnic,
-                'role' => $request->has('role') ? $request->role : $user_data->role,
-                'phone_number' => $request->has('phone_number') ? $request->phone_number : $user_data->phone_number
+                'phone_number' => $request->has('phone_number') ? $request->phone_number : $user_data->phone_number,
+                'is_approved' => $request->has('is_approved') ? $request->is_approved : $user_data->is_approved
             ]);
             return response()->json(['data' => new UserProfileResource($newdata)], 200);
         } else {
             return response()->json(['message' => "No User Found to update."], 500);
         }
-
     }
 
-    public function deleteHallManagerData(Request $request, $id)
+    public function deleteUserData(Request $request, $id)
     {
         $item = User::where('id', $id)->delete();
         if ($item) {
@@ -120,17 +85,15 @@ class ApiAdminController extends Controller
                 'hall_rent' => $request->has('hall_rent') ? $request->hall_rent : $itemdata->hall_rent,
                 'location' => $request->has('location') ? $request->location : $itemdata->location,
                 'min_no_of_persons' => $request->has('min_no_of_persons') ? $request->min_no_of_persons : $itemdata->min_no_of_persons,
-                'is_available' => $request->has('is_available') ? $request->is_available : $itemdata->is_available,
-                'available_from' => $request->has('available_from') ? $request->available_from : $itemdata->available_from,
-                'available_to' => $request->has('available_to') ? $request->available_to : $itemdata->available_to,
-                'is_approved' => $request->has('is_approved') ? $request->is_approved : $itemdata->is_approved,
-                'phone_number' => $request->has('phone_number') ? $request->phone_number : $itemdata->phone_number
+                'open_time' => $request->has('open_time') ? $request->open_time : $itemdata->open_time,
+                'closed_time' => $request->has('closed_time') ? $request->closed_time : $itemdata->closed_time,
+                'is_available' => $request->has('is_available') ? $request->is_available : $itemdata->is_available
             ]);
-            return response()->json(['data' => new HallResource($newdata)], 200);
+            $itemdata = Hall::where('id', $id)->first();
+            return response()->json(['data' => new HallResource($itemdata)], 200);
         } else {
             return response()->json(['message' => "No Hall Found to update."], 500);
         }
-
     }
 
     public function deleteHallData(Request $request, $id)
@@ -175,7 +138,6 @@ class ApiAdminController extends Controller
         } else {
             return response()->json(['message' => "No Booking Found to update."], 500);
         }
-
     }
 
     public function deleteBookingData(Request $request, $id)

@@ -14,7 +14,7 @@ class ApiHallController extends Controller
     public function searchHalls(Request $request)
     {
         // return response()->jsonmessagedata' => +$request->minprice], 500);
-        $items = Hall::where('is_available', 1)->where('is_approved', 1);
+        $items = Hall::where('is_available', 1);
         if ($request->has('name')) {
             if (!!$request->name) {
                 $items->where('name', 'Like', "%" . $request->name . "%");
@@ -95,10 +95,12 @@ class ApiHallController extends Controller
                 'hall_rent' => $request->has('hall_rent') ? $request->hall_rent : $itemdata->hall_rent,
                 'location' => $request->has('location') ? $request->location : $itemdata->location,
                 'min_no_of_persons' => $request->has('min_no_of_persons') ? $request->min_no_of_persons : $itemdata->min_no_of_persons,
-                'is_available' => $request->has('is_available') ? $request->is_available : $itemdata->is_available,
-                'phone_number' => $request->has('phone_number') ? $request->phone_number : $itemdata->phone_number
+                'open_time' => $request->has('open_time') ? $request->open_time : $itemdata->open_time,
+                'closed_time' => $request->has('closed_time') ? $request->closed_time : $itemdata->closed_time,
+                'is_available' => $request->has('is_available') ? $request->is_available : $itemdata->is_available
             ]);
-            return response()->json(['data' => new HallResource($newdata)], 200);
+            $itemdata = Hall::where('user_id', $request->user()->id)->where('id', $id)->first();
+            return response()->json(['data' => new HallResource($itemdata)], 200);
         } else {
             return response()->json(['message' => "No Hall Found to update."], 500);
         }
