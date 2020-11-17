@@ -4,9 +4,15 @@ namespace App\Http\Controllers\Api\Hall;
 
 use App\Http\Controllers\Controller;
 use App\Http\Resources\Booking\BookingResource;
+use App\Http\Resources\Hall\ApiHallFeatureResource;
+use App\Http\Resources\Hall\ApiHallFoodResource;
+use App\Http\Resources\Hall\ApiHallGalleryResource;
 use App\Http\Resources\Hall\HallResource;
 use App\Modal\Booking;
 use App\Modal\Hall;
+use App\Modal\HallFeature;
+use App\Modal\HallFood;
+use App\Modal\HallGallery;
 use Illuminate\Http\Request;
 
 class ApiHallController extends Controller
@@ -80,7 +86,16 @@ class ApiHallController extends Controller
     public function getHallData(Request $request, $id)
     {
         $item = Hall::where('user_id', $request->user()->id)->where('id', $id)->first();
-        return response()->json(['data' => new HallResource($item)], 200);
+        $images = HallGallery::where('hall_id', $id)->get();
+        $foodItems = HallFood::where('hall_id', $id)->get();
+        $featurea = HallFeature::where('hall_id', $id)->get();
+        $data = [
+            'hall' => new HallResource($item),
+            'images' => ApiHallGalleryResource::collection($images),
+            'food_items' => ApiHallFoodResource::collection($foodItems),
+            'features' => ApiHallFeatureResource::collection($featurea),
+        ];
+        return response()->json(['data' => $data], 200);
     }
 
     public function updateHallData(Request $request, $id)

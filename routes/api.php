@@ -57,17 +57,17 @@ Route::group([
     // Hall Gallery Routes APIs
     Route::get('hall-manager/halls/{hallID}/gallery', 'Hall\ApiHallGalleryController@index');
     Route::post('hall-manager/halls/{hallID}/gallery', 'Hall\ApiHallGalleryController@store');
-    Route::delete('hall-manager/halls/{hallID}/gallery/{imageID}', 'Hall\ApiHallGalleryController@store');
+    Route::delete('hall-manager/halls/{hallID}/gallery/{imageID}', 'Hall\ApiHallGalleryController@destroy');
 
     // Hall Food Routes APIs
     Route::get('hall-manager/halls/{hallID}/food', 'Hall\ApiHallFoodController@index');
     Route::post('hall-manager/halls/{hallID}/food', 'Hall\ApiHallFoodController@store');
-    Route::delete('hall-manager/halls/{hallID}/food/{foodID}', 'Hall\ApiHallFoodController@store');
+    Route::delete('hall-manager/halls/{hallID}/food/{foodID}', 'Hall\ApiHallFoodController@destroy');
 
     // Hall Feature Routes APIs
     Route::get('hall-manager/halls/{hallID}/feature', 'Hall\ApiHallFeatureController@index');
     Route::post('hall-manager/halls/{hallID}/feature', 'Hall\ApiHallFeatureController@store');
-    Route::delete('hall-manager/halls/{hallID}/feature/{featureID}', 'Hall\ApiHallFeatureController@store');
+    Route::delete('hall-manager/halls/{hallID}/feature/{featureID}', 'Hall\ApiHallFeatureController@destroy');
 });
 
 Route::group([
