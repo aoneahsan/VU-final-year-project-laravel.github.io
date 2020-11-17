@@ -15,7 +15,7 @@ class CreateHallsTable extends Migration
     {
         Schema::create('halls', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('user_id')->nullable();
+            $table->unsignedBigInteger('user_id');
             $table->string("name")->nullable();
             $table->text("description")->nullable();
             $table->string("hall_size")->nullable();
@@ -26,6 +26,9 @@ class CreateHallsTable extends Migration
             $table->string("open_time")->nullable();
             $table->string("closed_time")->nullable();
             $table->string("is_available")->default(true)->nullable();
+
+            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
+
             $table->softDeletes();
             $table->timestamps();
         });

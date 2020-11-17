@@ -15,9 +15,14 @@ class CreateHallFeedbackTable extends Migration
     {
         Schema::create('hall_feedback', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('user_id')->nullable();
-            $table->unsignedBigInteger('hall_id')->nullable();
+            $table->unsignedBigInteger('user_id');
+            $table->unsignedBigInteger('hall_id');
+            $table->string('feedback')->nullable();
             $table->string('rating')->nullable();
+
+            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
+            $table->foreign('hall_id')->references('id')->on('halls')->onDelete('cascade');
+
             $table->timestamps();
         });
     }

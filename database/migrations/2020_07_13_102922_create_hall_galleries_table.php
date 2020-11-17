@@ -15,9 +15,12 @@ class CreateHallGalleriesTable extends Migration
     {
         Schema::create('hall_galleries', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('hall_id')->nullable();
+            $table->unsignedBigInteger('hall_id');
             $table->string('file_name')->nullable();
             $table->string('file_path')->nullable();
+
+            $table->foreign('hall_id')->references('id')->on('halls')->onDelete('cascade');
+
             $table->timestamps();
         });
     }
