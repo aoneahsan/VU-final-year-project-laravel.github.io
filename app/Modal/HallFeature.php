@@ -6,5 +6,10 @@ use Illuminate\Database\Eloquent\Model;
 
 class HallFeature extends Model
 {
-    //
+    protected $guarded = [];
+
+    public function hall()
+    {
+        return $this->belongsTo('App\Modal\Hall');
+    }
 }

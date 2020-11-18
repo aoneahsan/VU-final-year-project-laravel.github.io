@@ -43,7 +43,8 @@ class ApiHallFeatureController extends Controller
         ]);
 
         if ($result) {
-            return response()->json(['data' => new ApiHallFeatureResource($result)], 200);
+            $item = HallFeature::where('id', $foodID)->where('hall_id', $hallID)->first();
+            return response()->json(['data' => new ApiHallFeatureResource($item)], 200);
         } else {
             return response()->json(['message' => "Error Occured while updating item!"], 500);
         }
@@ -51,8 +52,7 @@ class ApiHallFeatureController extends Controller
 
     public function destroy($hallID, $featureID)
     {
-        $item = HallFeature::where('id', $featureID)->first();
-        $result = $item->delete();
+        $result = HallFeature::where('id', $featureID)->delete();
         if ($result) {
             return response()->json(['data' => 'Deleted!'], 200);
         } else {

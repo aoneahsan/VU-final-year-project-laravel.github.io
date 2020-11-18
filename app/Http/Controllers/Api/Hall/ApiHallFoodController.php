@@ -42,7 +42,8 @@ class ApiHallFoodController extends Controller
         ]);
 
         if ($result) {
-            return response()->json(['data' => new ApiHallFoodResource($result)], 200);
+            $item = HallFood::where('id', $foodID)->where('hall_id', $hallID)->first();
+            return response()->json(['data' => new ApiHallFoodResource($item)], 200);
         } else {
             return response()->json(['message' => "Error Occured while updating item!"], 500);
         }
@@ -50,9 +51,7 @@ class ApiHallFoodController extends Controller
 
     public function destroy($hallID, $foodID)
     {
-        $item = HallFood::where('id', $foodID)->first();
-        Storage::delete($item->file_path);
-        $result = $item->delete();
+        $result = HallFood::where('id', $foodID)->delete();
         if ($result) {
             return response()->json(['data' => 'Deleted!'], 200);
         } else {

@@ -62,11 +62,13 @@ Route::group([
     // Hall Food Routes APIs
     Route::get('hall-manager/halls/{hallID}/food', 'Hall\ApiHallFoodController@index');
     Route::post('hall-manager/halls/{hallID}/food', 'Hall\ApiHallFoodController@store');
+    Route::put('hall-manager/halls/{hallID}/food/{foodID}', 'Hall\ApiHallFoodController@update');
     Route::delete('hall-manager/halls/{hallID}/food/{foodID}', 'Hall\ApiHallFoodController@destroy');
 
     // Hall Feature Routes APIs
     Route::get('hall-manager/halls/{hallID}/feature', 'Hall\ApiHallFeatureController@index');
     Route::post('hall-manager/halls/{hallID}/feature', 'Hall\ApiHallFeatureController@store');
+    Route::put('hall-manager/halls/{hallID}/feature/{featureID}', 'Hall\ApiHallFeatureController@update');
     Route::delete('hall-manager/halls/{hallID}/feature/{featureID}', 'Hall\ApiHallFeatureController@destroy');
 });
 
