@@ -24,6 +24,7 @@ class CreateBookingsTable extends Migration
             $table->dateTime('book_time_to')->nullable();
             $table->text('menu')->nullable();
             $table->string('price')->nullable();
+            $table->string('status')->default('pending'); // pending | approved | rejected
 
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
             $table->foreign('hall_id')->references('id')->on('halls')->onDelete('cascade');

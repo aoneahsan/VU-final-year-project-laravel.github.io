@@ -26,7 +26,13 @@ class HallResource extends JsonResource
             'open_time' => $this->open_time,
             'closed_time' => $this->closed_time,
             'is_available' => !!$this->is_available,
-            'created_at' => date('l F j, Y', strtotime($this->created_at))
+            'created_at' => date('l F j, Y', strtotime($this->created_at)),
+            'images' => !!$this->gallery ? ApiHallGalleryResource::collection($this->gallery) : null,
+            'food_items' => !!$this->foods ? ApiHallFoodResource::collection($this->foods) : null,
+            'features' => !!$this->features ? ApiHallFeatureResource::collection($this->features) : null,
+            'timings' => !!$this->timings ? ApiHallTimeResource::collection($this->timings) : null,
+            'feedbacks' => !!$this->feedbacks ? ApiHallFeedbackResource::collection($this->feedbacks) : null,
+            'bookings' => !!$this->bookings ? ApiHallBookingResource::collection($this->bookings) : null
         ];
     }
 }

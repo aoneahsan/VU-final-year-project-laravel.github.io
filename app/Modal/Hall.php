@@ -12,31 +12,36 @@ class Hall extends Model
 
     public function owner()
     {
-        return $this->hasMany('App\Modal\HallGallery', 'id', 'hall_id');
+        return $this->hasMany('App\Modal\HallGallery', 'hall_id', 'id');
     }
 
     public function gallery()
     {
-        return $this->hasMany('App\Modal\HallGallery', 'id', 'hall_id');
+        return $this->hasMany('App\Modal\HallGallery', 'hall_id', 'id');
     }
 
     public function foods()
     {
-        return $this->hasMany('App\Modal\HallFood', 'id', 'hall_id');
+        return $this->hasMany('App\Modal\HallFood', 'hall_id', 'id');
     }
 
     public function features()
     {
-        return $this->hasMany('App\Modal\HallFeature', 'id', 'hall_id');
+        return $this->hasMany('App\Modal\HallFeature', 'hall_id', 'id');
     }
 
     public function feedbacks()
     {
-        return $this->hasMany('App\Modal\HallFeedback', 'id', 'hall_id');
+        return $this->hasMany('App\Modal\HallFeedback', 'hall_id', 'id');
+    }
+
+    public function timings()
+    {
+        return $this->hasMany('App\Modal\HallTime', 'hall_id', 'id');
     }
 
     public function bookings()
     {
-        return $this->hasMany('App\Modal\Booking', 'id', 'hall_id');
+        return $this->hasMany('App\Modal\Booking', 'hall_id', 'id');
     }
 }

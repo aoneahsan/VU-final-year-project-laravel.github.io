@@ -7,12 +7,14 @@ use App\Http\Resources\Booking\BookingResource;
 use App\Http\Resources\Hall\ApiHallFeatureResource;
 use App\Http\Resources\Hall\ApiHallFoodResource;
 use App\Http\Resources\Hall\ApiHallGalleryResource;
+use App\Http\Resources\Hall\ApiHallTimeResource;
 use App\Http\Resources\Hall\HallResource;
 use App\Modal\Booking;
 use App\Modal\Hall;
 use App\Modal\HallFeature;
 use App\Modal\HallFood;
 use App\Modal\HallGallery;
+use App\Modal\HallTime;
 use Illuminate\Http\Request;
 
 class ApiHallController extends Controller
@@ -29,16 +31,14 @@ class ApiHallController extends Controller
         if ($request->has('minprice')) {
             if (!!$request->minprice) {
                 $items->where('hall_rent', '>=', +$request->minprice);
-            }
-            else {
+            } else {
                 $items->where('hall_rent', '>=', +1);
             }
         }
         if ($request->has('maxprice')) {
             if (!!$request->maxprice) {
                 $items->where('hall_rent', '<=', +$request->maxprice);
-            }
-            else {
+            } else {
                 $items->where('hall_rent', '<=', +1000000000000000);
             }
         }
@@ -85,24 +85,18 @@ class ApiHallController extends Controller
 
     public function getHallData(Request $request, $id)
     {
-        $item = Hall::where('user_id', $request->user()->id)->where('id', $id)->first();
-        $images = HallGallery::where('hall_id', $id)->get();
-        $foodItems = HallFood::where('hall_id', $id)->get();
-        $featurea = HallFeature::where('hall_id', $id)->get();
-        $data = [
-            'hall' => new HallResource($item),
-            'images' => ApiHallGalleryResource::collection($images),
-            'food_items' => ApiHallFoodResource::collection($foodItems),
-            'features' => ApiHallFeatureResource::collection($featurea),
-        ];
-        return response()->json(['data' => $data], 200);
+        $item = Hall::where('user_id', $request->user()->id)
+            ->where('id', $id)
+            ->with('gallery', 'foods', 'features', 'feedbacks', 'timings', 'bookings')
+            ->first();
+        return response()->json(['data' => new HallResource($item)], 200);
     }
 
     public function updateHallData(Request $request, $id)
     {
         $itemdata = Hall::where('user_id', $request->user()->id)->where('id', $id)->first();
         if ($itemdata) {
-            $newdata = $itemdata->update([
+            $itemdata->update([
                 'name' => $request->has('name') ? $request->name : $itemdata->name,
                 'description' => $request->has('description') ? $request->description : $itemdata->description,
                 'hall_size' => $request->has('hall_size') ? $request->hall_size : $itemdata->hall_size,

@@ -1,10 +1,10 @@
 <?php
 
-namespace App\Http\Resources\Booking;
+namespace App\Http\Resources\Hall;
 
 use Illuminate\Http\Resources\Json\JsonResource;
 
-class BookingResource extends JsonResource
+class ApiHallBookingResource extends JsonResource
 {
     /**
      * Transform the resource into an array.
@@ -23,11 +23,6 @@ class BookingResource extends JsonResource
                 'name' => $this->user ? $this->user->name : null,
                 'email' => $this->user ? $this->user->email : null,
                 'profile_image' => $this->user ? $this->user->getProfileImg() : null
-            ],
-            'hall' => [
-                'id' => $this->hall ? $this->hall->id : null,
-                'name' => $this->hall ? $this->hall->name : null,
-                'description' => $this->hall ? $this->hall->description : null
             ],
             'event_type' => $this->event_type,
             'no_of_persons' => $this->no_of_persons,

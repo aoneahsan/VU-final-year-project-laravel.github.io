@@ -70,6 +70,15 @@ Route::group([
     Route::post('hall-manager/halls/{hallID}/feature', 'Hall\ApiHallFeatureController@store');
     Route::put('hall-manager/halls/{hallID}/feature/{featureID}', 'Hall\ApiHallFeatureController@update');
     Route::delete('hall-manager/halls/{hallID}/feature/{featureID}', 'Hall\ApiHallFeatureController@destroy');
+
+    // Hall Timings Routes APIs
+    Route::get('hall-manager/halls/{hallID}/time', 'Hall\ApiHallTimeController@index');
+    Route::post('hall-manager/halls/{hallID}/time', 'Hall\ApiHallTimeController@store');
+    Route::put('hall-manager/halls/{hallID}/time/{id}', 'Hall\ApiHallTimeController@update');
+    Route::delete('hall-manager/halls/{hallID}/time/{id}', 'Hall\ApiHallTimeController@destroy');
+
+    // Hall Booking Routes APIs
+    Route::put('hall-manager/halls/{hallID}/booking/{id}', 'Hall\ApiHallBookingController@update');
 });
 
 Route::group([

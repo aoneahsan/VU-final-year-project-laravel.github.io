@@ -26,6 +26,7 @@ class ApiBookingController extends Controller
             'booking_time' => $request->has('booking_time') ? $request->booking_time : null,
             'book_time_from' => $request->has('book_time_from') ? $request->book_time_from : null,
             'book_time_to' => $request->has('book_time_to') ? $request->book_time_to : null,
+            'status' => $request->has('status') ? $request->status : 'pending',
             'menu' => $request->has('menu') ? $request->menu : null,
             'price' => $request->has('price') ? $request->price : null
         ]);
@@ -50,6 +51,7 @@ class ApiBookingController extends Controller
                 'booking_time' => $request->has('booking_time') ? $request->booking_time : $data->booking_time,
                 'book_time_from' => $request->has('book_time_from') ? $request->book_time_from : $data->book_time_from,
                 'book_time_to' => $request->has('book_time_to') ? $request->book_time_to : $data->book_time_to,
+                'status' => $request->has('status') ? $request->status : $data->status,
                 'menu' => $request->has('menu') ? $request->menu : $data->menu,
                 'price' => $request->has('price') ? $request->price : $data->price
             ]);

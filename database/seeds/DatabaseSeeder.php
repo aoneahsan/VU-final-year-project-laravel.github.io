@@ -2,6 +2,7 @@
 
 use App\Modal\Booking;
 use App\Modal\Hall;
+use App\Modal\HallFeedback;
 use App\User;
 use Carbon\Carbon;
 use Illuminate\Database\Seeder;
@@ -194,6 +195,8 @@ class DatabaseSeeder extends Seeder
             $booking->event_type = "mariage";
             $booking->no_of_persons = rand(1, 100);
             $booking->booking_time = Carbon::now();
+            $booking->book_time_from = Carbon::now()->addDays(1);
+            $booking->book_time_to = Carbon::now()->addDays(4);
             $booking->menu = 'Food Menu';
             $booking->price = 190;
             $booking->save();
@@ -204,6 +207,8 @@ class DatabaseSeeder extends Seeder
             $booking->event_type = "mariage";
             $booking->no_of_persons = rand(1, 100);
             $booking->booking_time = Carbon::now();
+            $booking->book_time_from = Carbon::now()->addDays(1);
+            $booking->book_time_to = Carbon::now()->addDays(4);
             $booking->menu = 'Food Menu';
             $booking->price = 290;
             $booking->save();
@@ -214,9 +219,39 @@ class DatabaseSeeder extends Seeder
             $booking->event_type = "mariage";
             $booking->no_of_persons = rand(1, 100);
             $booking->booking_time = Carbon::now();
+            $booking->book_time_from = Carbon::now()->addDays(1);
+            $booking->book_time_to = Carbon::now()->addDays(4);
             $booking->menu = 'Food Menu';
             $booking->price = 90;
             $booking->save();
+
+            $feedback = new HallFeedback();
+            $feedback->user_id = User::all()->random()->id;
+            $feedback->hall_id = Hall::where('is_available', 1)->get()->random()->id;;
+            $feedback->feedback = "feedback";
+            $feedback->rating = 5;
+            $feedback->save();
+
+            $feedback = new HallFeedback();
+            $feedback->user_id = User::all()->random()->id;
+            $feedback->hall_id = Hall::where('is_available', 1)->get()->random()->id;;
+            $feedback->feedback = "feedback";
+            $feedback->rating = 5;
+            $feedback->save();
+
+            $feedback = new HallFeedback();
+            $feedback->user_id = User::all()->random()->id;
+            $feedback->hall_id = Hall::where('is_available', 1)->get()->random()->id;;
+            $feedback->feedback = "feedback";
+            $feedback->rating = 5;
+            $feedback->save();
+
+            $feedback = new HallFeedback();
+            $feedback->user_id = User::all()->random()->id;
+            $feedback->hall_id = Hall::where('is_available', 1)->get()->random()->id;;
+            $feedback->feedback = "feedback";
+            $feedback->rating = 5;
+            $feedback->save();
         }
     }
 }
