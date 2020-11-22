@@ -20,14 +20,24 @@ class Hall extends Model
         return $this->hasMany('App\Modal\HallGallery', 'hall_id', 'id');
     }
 
-    public function foods()
+    public function allFoods()
     {
         return $this->hasMany('App\Modal\HallFood', 'hall_id', 'id');
     }
 
-    public function features()
+    public function foods()
+    {
+        return $this->allFoods()->where('is_available', true);
+    }
+
+    public function allFeatures()
     {
         return $this->hasMany('App\Modal\HallFeature', 'hall_id', 'id');
+    }
+
+    public function features()
+    {
+        return $this->allFeatures()->where('is_available', true);
     }
 
     public function feedbacks()

@@ -2,7 +2,10 @@
 
 use App\Modal\Booking;
 use App\Modal\Hall;
+use App\Modal\HallFeature;
 use App\Modal\HallFeedback;
+use App\Modal\HallFood;
+use App\Modal\HallTime;
 use App\User;
 use Carbon\Carbon;
 use Illuminate\Database\Seeder;
@@ -133,68 +136,68 @@ class DatabaseSeeder extends Seeder
             $hall1->is_available = true;
             $hall1->save();
 
-            $hall1 = new Hall();
-            $hall1->user_id = User::all()->random()->id;
-            $hall1->name = "hall2";
-            $hall1->description = "hall2 best hall.";
-            $hall1->hall_size = 100;
-            $hall1->event_type = 'mariage';
-            $hall1->hall_rent = 130;
-            $hall1->location = 'lahore';
-            $hall1->min_no_of_persons = 4;
-            $hall1->open_time = '23:11';
-            $hall1->closed_time = '17:10';
-            $hall1->is_available = true;
-            $hall1->save();
+            $hall = new Hall();
+            $hall->user_id = User::all()->random()->id;
+            $hall->name = "hall2";
+            $hall->description = "hall2 best hall.";
+            $hall->hall_size = 100;
+            $hall->event_type = 'mariage';
+            $hall->hall_rent = 130;
+            $hall->location = 'lahore';
+            $hall->min_no_of_persons = 4;
+            $hall->open_time = '23:11';
+            $hall->closed_time = '17:10';
+            $hall->is_available = true;
+            $hall->save();
 
-            $hall1 = new Hall();
-            $hall1->user_id = User::all()->random()->id;
-            $hall1->name = "hall3";
-            $hall1->description = "hall3 best hall.";
-            $hall1->hall_size = 100;
-            $hall1->event_type = 'mariage';
-            $hall1->hall_rent = 90;
-            $hall1->location = 'pakistan';
-            $hall1->min_no_of_persons = 4;
-            $hall1->open_time = '23:11';
-            $hall1->closed_time = '17:10';
-            $hall1->is_available = false;
-            $hall1->save();
+            $hall = new Hall();
+            $hall->user_id = User::all()->random()->id;
+            $hall->name = "hall3";
+            $hall->description = "hall3 best hall.";
+            $hall->hall_size = 100;
+            $hall->event_type = 'mariage';
+            $hall->hall_rent = 90;
+            $hall->location = 'pakistan';
+            $hall->min_no_of_persons = 4;
+            $hall->open_time = '23:11';
+            $hall->closed_time = '17:10';
+            $hall->is_available = false;
+            $hall->save();
 
-            $hall1 = new Hall();
-            $hall1->user_id = User::all()->random()->id;
-            $hall1->name = "hall4";
-            $hall1->description = "hall4 best hall.";
-            $hall1->hall_size = 100;
-            $hall1->event_type = 'mariage';
-            $hall1->hall_rent = 60;
-            $hall1->location = 'karachi';
-            $hall1->min_no_of_persons = 4;
-            $hall1->open_time = '23:11';
-            $hall1->closed_time = '17:10';
-            $hall1->is_available = true;
-            $hall1->save();
+            $hall = new Hall();
+            $hall->user_id = User::all()->random()->id;
+            $hall->name = "hall4";
+            $hall->description = "hall4 best hall.";
+            $hall->hall_size = 100;
+            $hall->event_type = 'mariage';
+            $hall->hall_rent = 60;
+            $hall->location = 'karachi';
+            $hall->min_no_of_persons = 4;
+            $hall->open_time = '23:11';
+            $hall->closed_time = '17:10';
+            $hall->is_available = true;
+            $hall->save();
 
-            $hall1 = new Hall();
-            $hall1->user_id = User::all()->random()->id;
-            $hall1->name = "hall4";
-            $hall1->description = "hall4 best hall.";
-            $hall1->hall_size = 100;
-            $hall1->event_type = 'mariage';
-            $hall1->hall_rent = 60;
-            $hall1->location = 'karachi';
-            $hall1->min_no_of_persons = 4;
-            $hall1->open_time = '23:11';
-            $hall1->closed_time = '17:10';
-            $hall1->is_available = true;
-            $hall1->save();
+            $hall = new Hall();
+            $hall->user_id = User::all()->random()->id;
+            $hall->name = "hall4";
+            $hall->description = "hall4 best hall.";
+            $hall->hall_size = 100;
+            $hall->event_type = 'mariage';
+            $hall->hall_rent = 60;
+            $hall->location = 'karachi';
+            $hall->min_no_of_persons = 4;
+            $hall->open_time = '23:11';
+            $hall->closed_time = '17:10';
+            $hall->is_available = true;
+            $hall->save();
 
             $booking = new Booking();
             $booking->user_id = User::all()->random()->id;
             $booking->hall_id = Hall::where('is_available', 1)->get()->random()->id;
             $booking->event_type = "mariage";
             $booking->no_of_persons = rand(1, 100);
-            $booking->booking_time = Carbon::now();
+            $booking->booking_date = Carbon::now();
             $booking->book_time_from = Carbon::now()->addDays(1);
             $booking->book_time_to = Carbon::now()->addDays(4);
             $booking->menu = 'Food Menu';
@@ -206,7 +209,7 @@ class DatabaseSeeder extends Seeder
             $booking->hall_id = Hall::where('is_available', 1)->get()->random()->id;
             $booking->event_type = "mariage";
             $booking->no_of_persons = rand(1, 100);
-            $booking->booking_time = Carbon::now();
+            $booking->booking_date = Carbon::now();
             $booking->book_time_from = Carbon::now()->addDays(1);
             $booking->book_time_to = Carbon::now()->addDays(4);
             $booking->menu = 'Food Menu';
@@ -218,7 +221,7 @@ class DatabaseSeeder extends Seeder
             $booking->hall_id = Hall::where('is_available', 1)->get()->random()->id;
             $booking->event_type = "mariage";
             $booking->no_of_persons = rand(1, 100);
-            $booking->booking_time = Carbon::now();
+            $booking->booking_date = Carbon::now();
             $booking->book_time_from = Carbon::now()->addDays(1);
             $booking->book_time_to = Carbon::now()->addDays(4);
             $booking->menu = 'Food Menu';
@@ -226,6 +229,7 @@ class DatabaseSeeder extends Seeder
             $booking->save();
 
             $feedback = new HallFeedback();
+            $feedback->booking_id = Booking::all()->random()->id;
             $feedback->user_id = User::all()->random()->id;
             $feedback->hall_id = Hall::where('is_available', 1)->get()->random()->id;;
             $feedback->feedback = "feedback";
@@ -233,6 +237,7 @@ class DatabaseSeeder extends Seeder
             $feedback->save();
 
             $feedback = new HallFeedback();
+            $feedback->booking_id = Booking::all()->random()->id;
             $feedback->user_id = User::all()->random()->id;
             $feedback->hall_id = Hall::where('is_available', 1)->get()->random()->id;;
             $feedback->feedback = "feedback";
@@ -240,6 +245,7 @@ class DatabaseSeeder extends Seeder
             $feedback->save();
 
             $feedback = new HallFeedback();
+            $feedback->booking_id = Booking::all()->random()->id;
             $feedback->user_id = User::all()->random()->id;
             $feedback->hall_id = Hall::where('is_available', 1)->get()->random()->id;;
             $feedback->feedback = "feedback";
@@ -247,11 +253,75 @@ class DatabaseSeeder extends Seeder
             $feedback->save();
 
             $feedback = new HallFeedback();
+            $feedback->booking_id = Booking::all()->random()->id;
             $feedback->user_id = User::all()->random()->id;
             $feedback->hall_id = Hall::where('is_available', 1)->get()->random()->id;;
             $feedback->feedback = "feedback";
             $feedback->rating = 5;
             $feedback->save();
+
+            $hallFood = new HallFood();
+            $hallFood->hall_id = $hall1->id;
+            $hallFood->title = "Salad";
+            $hallFood->price = 120;
+            $hallFood->is_available = true;
+            $hallFood->save();
+
+            $hallFood = new HallFood();
+            $hallFood->hall_id = $hall1->id;
+            $hallFood->title = "chiken";
+            $hallFood->price = 420;
+            $hallFood->is_available = true;
+            $hallFood->save();
+
+            $hallFood = new HallFood();
+            $hallFood->hall_id = $hall1->id;
+            $hallFood->title = "Drink";
+            $hallFood->price = 150;
+            $hallFood->is_available = true;
+            $hallFood->save();
+
+            $hallFeature = new HallFeature();
+            $hallFeature->hall_id = $hall1->id;
+            $hallFeature->title = "Salad";
+            $hallFeature->description = "Salad sdasd asd asda sd da ds ads ads asd as da sda sd asd asd a sd";
+            $hallFeature->price = 120;
+            $hallFeature->is_available = true;
+            $hallFeature->save();
+
+            $hallFeature = new HallFeature();
+            $hallFeature->hall_id = $hall1->id;
+            $hallFeature->title = "chiken";
+            $hallFeature->description = "chiken sdasd asd asda sd da ds ads ads asd as da sda sd asd asd a sd";
+            $hallFeature->price = 420;
+            $hallFeature->is_available = true;
+            $hallFeature->save();
+
+            $hallFeature = new HallFeature();
+            $hallFeature->hall_id = $hall1->id;
+            $hallFeature->title = "Drink";
+            $hallFeature->description = "Drink sdasd asd asda sd da ds ads ads asd as da sda sd asd asd a sd";
+            $hallFeature->price = 150;
+            $hallFeature->is_available = true;
+            $hallFeature->save();
+
+            $hallFeature = new HallTime();
+            $hallFeature->hall_id = $hall1->id;
+            $hallFeature->start_time = "05:00";
+            $hallFeature->end_time = "10:00";
+            $hallFeature->save();
+
+            $hallFeature = new HallTime();
+            $hallFeature->hall_id = $hall1->id;
+            $hallFeature->start_time = "11:00";
+            $hallFeature->end_time = "15:00";
+            $hallFeature->save();
+
+            $hallFeature = new HallTime();
+            $hallFeature->hall_id = $hall1->id;
+            $hallFeature->start_time = "16:00";
+            $hallFeature->end_time = "20:00";
+            $hallFeature->save();
         }
     }
 }

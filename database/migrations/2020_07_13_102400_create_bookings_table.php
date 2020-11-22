@@ -19,11 +19,13 @@ class CreateBookingsTable extends Migration
             $table->unsignedBigInteger('hall_id');
             $table->string('event_type')->nullable();
             $table->string('no_of_persons')->nullable();
-            $table->string('booking_time')->nullable();
-            $table->dateTime('book_time_from')->nullable();
-            $table->dateTime('book_time_to')->nullable();
-            $table->text('menu')->nullable();
+            $table->string('booking_date')->nullable();
+            $table->string('book_time_from')->nullable();
+            $table->string('book_time_to')->nullable();
+            $table->longText('menu')->nullable();
+            $table->longText('extra_features')->nullable();
             $table->string('price')->nullable();
+            $table->string("feedback_provided_at")->nullable();
             $table->string('status')->default('pending'); // pending | approved | rejected
 
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');

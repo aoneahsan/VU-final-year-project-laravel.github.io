@@ -26,10 +26,12 @@ class ApiHallBookingResource extends JsonResource
             ],
             'event_type' => $this->event_type,
             'no_of_persons' => $this->no_of_persons,
-            'booking_time' => $this->booking_time,
+            'booking_date' => $this->booking_date,
             'book_time_from' => $this->book_time_from,
             'book_time_to' => $this->book_time_to,
             'menu' => $this->menu,
+            'feedback_provided_at' => $this->feedback_provided_at,
+            'extra_features' => $this->extra_features,
             'status' => $this->status,
             'price' => $this->price,
             'created_at' => date('l F j, Y', strtotime($this->created_at))

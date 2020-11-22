@@ -2,6 +2,7 @@
 
 namespace App\Http\Resources\Booking;
 
+use Carbon\Carbon;
 use Illuminate\Http\Resources\Json\JsonResource;
 
 class BookingResource extends JsonResource
@@ -27,15 +28,18 @@ class BookingResource extends JsonResource
             'hall' => [
                 'id' => $this->hall ? $this->hall->id : null,
                 'name' => $this->hall ? $this->hall->name : null,
-                'description' => $this->hall ? $this->hall->description : null
+                'description' => $this->hall ? $this->hall->description : null,
+                'location' => $this->hall ? $this->hall->location : null
             ],
             'event_type' => $this->event_type,
             'no_of_persons' => $this->no_of_persons,
-            'booking_time' => $this->booking_time,
+            'booking_date' => $this->booking_date,
             'book_time_from' => $this->book_time_from,
             'book_time_to' => $this->book_time_to,
             'menu' => $this->menu,
+            'feedback_provided_at' => $this->feedback_provided_at,
             'status' => $this->status,
+            'extra_features' => $this->extra_features,
             'price' => $this->price,
             'created_at' => date('l F j, Y', strtotime($this->created_at))
         ];

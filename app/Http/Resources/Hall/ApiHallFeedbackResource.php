@@ -17,6 +17,7 @@ class ApiHallFeedbackResource extends JsonResource
         return [
             'id' => $this->id,
             'user_id' => $this->user_id,
+            'booking_id' => $this->booking_id,
             'hall_id' => $this->hall_id,
             'user' => [
                 'id' => $this->user ? $this->user->id : null,

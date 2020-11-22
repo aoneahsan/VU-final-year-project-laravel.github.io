@@ -42,7 +42,11 @@ Route::group([
 
 
     // Bookings APIs
-    Route::get('user/bookings', 'User\ApiUserController@getUserProfileData');
+    Route::get('user/bookings', 'Booking\ApiBookingController@index');
+    Route::post('user/bookings', 'Booking\ApiBookingController@store');
+    Route::post('user/bookings/halls/{hallId}', 'Booking\ApiBookingController@getHallData');
+    Route::post('user/bookings/{bookingId}/feedback', 'Booking\ApiBookingController@placeFeedback');
+    Route::get('user/bookings/{bookingId}', 'Booking\ApiBookingController@show');
 
     // Search Halls
     Route::post('search-halls', 'Hall\ApiHallController@searchHalls');

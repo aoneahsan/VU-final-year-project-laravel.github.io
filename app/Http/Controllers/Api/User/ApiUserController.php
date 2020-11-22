@@ -7,7 +7,6 @@ use Illuminate\Http\Request;
 
 use App\User;
 use App\Http\Resources\User\UserProfileResource;
-
 use Illuminate\Support\Facades\Storage;
 
 class ApiUserController extends Controller
